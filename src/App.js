@@ -18,10 +18,10 @@ function App() {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response1 = await axios.get(`http://localhost:8181/api/v1/shell/settings/active_configuration`);
+                const response1 = await axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/settings/active_configuration`);
                 const id = response1.data.payload[0].key_value;
 
-                const response2 = await axios.get(`http://localhost:8181/api/v1/shell/configurations/${id}`);
+                const response2 = await axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${id}`);
                 setConfigurationId(response2.data.payload[0].id);
                 setWidth(response2.data.payload[0].width)
                 setHeight(response2.data.payload[0].height)

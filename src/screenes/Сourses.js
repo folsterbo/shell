@@ -13,7 +13,7 @@ const Courses = ({ configurationId, width, height }) => {
         setModalActive(true);
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/goods/${id}`)
+                const response = await axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/goods/${id}`)
                 setData(response.data.payload[0]);
             } catch (error) {
                 console.error(error);
@@ -22,7 +22,7 @@ const Courses = ({ configurationId, width, height }) => {
         fetchData().then();
     };
     useEffect(() => {
-        axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/goods`)
+        axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/goods`)
             .then(response => setCourses(response.data.items.filter(item => item.good_type_id === 3)))
             .catch(error => console.error(error));
     }, [configurationId]);

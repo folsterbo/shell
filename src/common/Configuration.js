@@ -25,7 +25,7 @@ const Configuration = ({onConfigurationChange}) => {
     const [configuration_id, setConfigurationId] = useState(0);
     const handleDeleteConfiguration = (id) => {
         const fetchData = async () => {
-            await axios.delete(`http://localhost:8181/api/v1/shell/configurations/${id}`)
+            await axios.delete(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${id}`)
                 .catch(error => console.error(error));
         };
         fetchData().then(() => setUpdate(update + 1));
@@ -48,7 +48,7 @@ const Configuration = ({onConfigurationChange}) => {
         const newConfigurationData = {data: configuration}
 
         const fetchData = async () => {
-            await axios.post(`http://localhost:8181/api/v1/shell/configurations`, newConfigurationData)
+            await axios.post(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations`, newConfigurationData)
                 .catch(error => console.error(error));
         };
         fetchData().then(() => setUpdate(update + 1));
@@ -59,7 +59,7 @@ const Configuration = ({onConfigurationChange}) => {
         event.preventDefault();
         const newConfigurationData = {data: configuration}
         const fetchData = async () => {
-            await axios.put(`http://localhost:8181/api/v1/shell/configurations/${configuration_id}`, newConfigurationData)
+            await axios.put(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configuration_id}`, newConfigurationData)
                 .catch(error => console.error(error));
         };
         fetchData().then(() => setUpdate(update + 1));
@@ -85,7 +85,7 @@ const Configuration = ({onConfigurationChange}) => {
     }, [background]);
     useEffect(() => {
         const fetchData = async () => {
-            await axios.get('http://localhost:8181/api/v1/shell/configurations')
+            await axios.get('https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations')
                 .then(response => {
                     setConfigurationsList(response.data.items)
                 })
@@ -97,7 +97,7 @@ const Configuration = ({onConfigurationChange}) => {
     }, [update]);
     useEffect(() => {
         const fetchData = async () => {
-            await axios.get(`http://localhost:8181/api/v1/shell/configurations/${configuration_id}`)
+            await axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configuration_id}`)
                 .then(response => setConfiguration(response.data.payload[0]))
                 .catch(error => {
                     console.log(error);

@@ -11,7 +11,7 @@ const Programs = ({ configurationId, width, height }) => {
         setIsProgramOpen(true);
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/programs/${id}`)
+                const response = await axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/programs/${id}`)
                 setData(response.data.payload[0]);
             } catch (error) {
                 console.error(error);
@@ -20,7 +20,7 @@ const Programs = ({ configurationId, width, height }) => {
         fetchData().then();
     };
     useEffect(() => {
-        axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/programs`)
+        axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/programs`)
             .then(response => setPrograms(response.data.items))
             .catch(error => console.error(error));
     }, [configurationId]);

@@ -27,7 +27,7 @@ const Games = ({ configurationId, width, height }) => {
         setModalActive(true);
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/games/${id}`)
+                const response = await axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/games/${id}`)
                 setData(response.data.payload[0]);
             } catch (error) {
                 console.error(error);
@@ -36,14 +36,14 @@ const Games = ({ configurationId, width, height }) => {
         fetchData().then();
     };
     useEffect(() => {
-        axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/games`)
+        axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/games`)
             .then(response => setGames(response.data.items))
             .catch(error => console.error(error));
     }, [configurationId]);
     function handleFilterGameType(event) {
         if(filterActive === event) {
             setFilterActive(null);
-            axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/games`)
+            axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/games`)
                 .then(response => setGames(response.data.items))
                 .catch(error => console.error(error));
         } else {
@@ -54,7 +54,7 @@ const Games = ({ configurationId, width, height }) => {
     function handleFilterAge(event) {
         if(filterAgeActive === event) {
             setFilterAgeActive(null);
-            axios.get(`http://localhost:8181/api/v1/shell/configurations/${configurationId}/games`)
+            axios.get(`https://dcc4.langame.ru/configurator-api/api/v1/shell/configurations/${configurationId}/games`)
                 .then(response => setGames(response.data.items))
                 .catch(error => console.error(error));
         } else {
